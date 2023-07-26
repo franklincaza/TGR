@@ -3,6 +3,7 @@ import models
 from RPA.Browser.Selenium import Selenium;
 import os
 from shutil import rmtree
+
 browser = Selenium()
 Dt=models.master()
 
@@ -15,17 +16,24 @@ def eliminarcarpetas():
         rmtree("PDF")
         rmtree("CSV")
         rmtree("Log Scraping")
+        rmtree("Formato Solicitud")
+        rmtree("Salida")      
         print("Eliminamos carpetas")
+
     except:
         pass
 
 
 def Creacionescarpetas():
     print("Creado las carpetas para PDF's")
+
     try:
         os.mkdir('PDF')
         os.mkdir('CSV')
+        os.mkdir("Formato Solicitud")  
         os.mkdir("Log Scraping")
+        os.mkdir("Salida") 
+
     except:
         pass
 
@@ -36,10 +44,6 @@ def Creacionescarpetas():
      except:
       pass
         
-
-
-    
-
 
 
 
@@ -65,35 +69,26 @@ def task():
 
                 defRPAselenium.LOGconsulta(region,comuna,rol1,rol2)
                 try:
-                    tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta)                
+                 tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
+                 
                 except:
-                    defRPAselenium.cerraNavegador()
-                    print("----------Reintento de trasaccion----------------------------")
-                    tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta)             
+                   print("Tercer reintento ") 
+                   tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
+                   
                 finally:
-                    if tabla == """Recatcha no me permitio hacer la consulta""":
-                        defRPAselenium.cerraNavegador()
-                        print("----------Reintento de trasaccion----------------------------")
-                        tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta)
-                        
-                
-                    if tabla is None:
-                        print("tx fallida regitros txt del RUT: "+ str(Rut)+"-"+str(region)+"-"+str(comuna)+"-"+str(rol1)+"-"+str(rol2))
-                        nom="Log Scraping/"+Carpeta+".txt"  
-                        f = open(nom, "a")
-                        f.write("tx fallida regitros txt")
-                        f.close()
-                        defRPAselenium.cerraNavegador() 
-                        tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta) 
-                    else:
-                        datosscrap=str(tabla)  
-                        nom="Log Scraping/"+Carpeta+".txt"     
-                        f = open(nom, "a")
-                        f.write(datosscrap)
-                        f.close()
-                        #link 
-                        defRPAselenium.cerraNavegador()
-                     
+                    pass   
+                    defRPAselenium.cerraNavegador()
+
+
+                try:   
+
+                    print("----------------Diligenciando resumen--------------------------------------- ")
+                    defRPAselenium.diligenciarResumen(Hoja,Carpeta)
+                    defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,rol2)
+                    print("----------------Diligenciando Formato de solicitud--------------------------- ")
+                    defRPAselenium.formatosolicitusd(Hoja,Carpeta)
+                except:
+                   pass
 
 def tgc():
  task()                   
@@ -102,9 +97,11 @@ def tgc():
 if __name__ == "__main__":
    eliminarcarpetas()
    Creacionescarpetas()
+   defRPAselenium.bakup()
    tgc()
    models.txttocsv()
    print('Ejecucion finalizada')
+   
  
  
 

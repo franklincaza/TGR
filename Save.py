@@ -1,6 +1,8 @@
 
 from RPA.Windows import Windows
 import time
+import models
+
 
 library = Windows() 
 
@@ -19,6 +21,7 @@ def savepdf(carpeta,consecutivo):
     time.sleep(4.5)    
     library.send_keys(keys="{CTRL}S")    
     time.sleep(2)
+    
     library.send_keys(keys=txt)
     time.sleep(5)
     library.send_keys(keys="{Enter}")
@@ -34,7 +37,4 @@ def savepdf(carpeta,consecutivo):
 
 
 
-car="94-76182178-4-Inversiones World Logistic"
-con=1
 
-savepdf(car,con)
