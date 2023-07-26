@@ -72,8 +72,13 @@ def task():
                  tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
                  
                 except:
-                   print("Tercer reintento ") 
-                   tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
+                   
+                   #Tercer reintento para garantizar continuidad si encuentra Recatchat
+                   try: 
+                    print("Tercer reintento ") 
+                    tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
+                   except:
+                      pass
                    
                 finally:
                     pass   
