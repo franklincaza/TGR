@@ -1,4 +1,5 @@
 from RPA.Browser.Selenium import Selenium;
+from RPA.Excel.Application import Application
 from RPA.Windows import Windows
 from RPA.HTTP import HTTP
 from RPA.Excel.Files import Files;
@@ -18,8 +19,6 @@ listSCRAPIADO= ([{
                 'TOTA A PAGAR':"",
                  }])
 
-
-
 listSFormato= ([{
                'pathubicacion':"",
                'Nombre Solicitante':"", 
@@ -38,6 +37,8 @@ listSFormato= ([{
 browser = Selenium()
 library = Windows() 
 lib = Files()
+app = Application()
+año="2018"
 
 def Pyasset(asset):
     lib.open_workbook("PyAsset\Config.xlsx")      #ubicacion del libro
@@ -57,45 +58,32 @@ def openweb(url):
     state_tgc_Inicio=True
     time.sleep(random.uniform(1,3))
 
-
-
 def clickweb(elemento):
     time.sleep(random.uniform(1,2))
     browser.click_element(elemento)
     time.sleep(random.uniform(1,2))
-
 
 def typeinputText(elemento,texto):
     time.sleep(random.uniform(1,2))
     browser.input_text(elemento,texto)
     time.sleep(random.uniform(1,2))
 
-
-
 def obtenertabla(elemento,columna,celdas):
     time.sleep(random.uniform(1,2))
     browser.get_table_cell(locator=elemento,column=columna,row=celdas)
     time.sleep(random.uniform(1,2))
 
-
 def obtenerTexto(elemento):
     time.sleep(random.uniform(1,2))
     browser.get_text(elemento)
     time.sleep(random.uniform(1,2))
-    
-  
-    
-
-
 
 def tiempoespera():
     time.sleep(random.uniform(11,15))
 
-
 def cerraNavegador():
     browser.close_browser()
     print("----------------------proceso terminado----------------------")
-
 
 def destacar(elemento):
     browser.highlight_elements(elemento)
@@ -117,10 +105,6 @@ def extraertablita():
     #recorrerFilasDescargas()
     print(scraping)
     return scraping
-
-
-
-    
 
 def recorrerFilasDescargas(carpeta,scraping,rol,hoja):
    
@@ -144,13 +128,18 @@ def recorrerFilasDescargas(carpeta,scraping,rol,hoja):
                     FOLIO=obtenerTexto("//TABLE[@id='example']//tr["+str(row)+"]//td[3]")
                     print("El consecutivo es " + str(consecutivo ))
                     clickweb("//TABLE[@id='example']//tr["+str(row)+"]//td[3]")
+
+                    try:
+                        creacioncarpetas (carpeta)
+                    except:
+                         pass
+                    
                     savepdf(carpeta,str(consecutivo ),CUOTA,str(rol))
                     row=row+1 
         except:
              pass
         finally:
             pass
-
 
 def recorriendoFormatoSolicitud(carpeta,hoja):
     row=0
@@ -172,7 +161,7 @@ def recorriendoFormatoSolicitud(carpeta,hoja):
                 print("consultado Monto : "+str(VALOR))
                 row=int(row-1  )
                 
-                FormatoSolicitud(hoja,CUOTA, VALOR) 
+               
                  
                 row=row+1      
     except:
@@ -201,18 +190,11 @@ def recorriendoFormatoSolicitud(carpeta,hoja):
                     
                     row=row+1      
         
-    
- 
-            
-
-
-
 def validacion():
     validacion= browser.get_text("//DIV[@class='dentro_letra'][text()='Contribuciones']")
     if validacion == 'Contribuciones': print("ingresando a "+validacion) 
     return validacion
-    
-    
+       
 def navegacion(region,comuna,rol1,rol2,ruta,hoja):
     def interacion():
         openweb("https://www.tesoreria.cl/ContribucionesPorRolWEB/muestraBusqueda?tipoPago=PortalContribPresencial")                             
@@ -241,13 +223,9 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                     tabla =extraertablita()
                     export(ruta,tabla)
                     destacar("//TABLE[@id='example']//tbody//tr//td") 
-                    recorrerFilasDescargas(ruta,tabla,rol2,hoja)
+                    pdfrol=str(rol1)+"-"+str(rol2)
                     
-                   
-                    
-                    
-                   
-                    
+                    recorrerFilasDescargas(ruta,tabla,str(pdfrol),hoja)
                             
 
         except:# proceso de consulta reintento #1
@@ -275,7 +253,9 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                         export(ruta,tabla)
                         destacar("//TABLE[@id='example']//tbody//tr//td")
                         print(tabla) 
-                        recorrerFilasDescargas(ruta,tabla,rol2,hoja)
+                        pdfrol=str(rol1)+"-"+str(rol2)
+                       
+                        recorrerFilasDescargas(ruta,tabla,str(pdfrol),hoja)
                         
                         
                         
@@ -294,7 +274,6 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
          
          pass
          cerraNavegador()                    
-
 
 def savepdf(carpeta,consecutivo,cuota,rol):
  base=Pyasset(asset="base")
@@ -333,11 +312,7 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         origen=txt+"\\"+salida+".pdf"
         destino=txt+"\\"+"Cupon de pago "+str(rol)+" "+str(cuota)+".pdf"
 
-        cambionombre(origen, destino)
-  
-        
-       
-        
+        cambionombre(origen, destino)         
 
     if str(consecutivo)!=str("1"):
         library.send_keys(keys="{Alt}N")
@@ -354,7 +329,6 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         destino=txt+"\\"+"Cupon de pago "+str(rol)+" "+str(cuota)+".pdf"
 
         cambionombre(origen, destino)
-
    
 def txtscraping(carpeta):
   f=open('Log Scraping/'+carpeta+".txt","r")
@@ -400,12 +374,6 @@ def txtscraping(carpeta):
       TOTAPAGAR=(str(u)[(Sumatoria):Sumatoria+dato]).replace(","," ")
       Sumatoria=Sumatoria+len(TOTAPAGAR)+1
 
-
-
-      
-     
-     
-   
               
       listSCRAPIADO.append({
                'CUOTA':CUOTA,
@@ -415,14 +383,10 @@ def txtscraping(carpeta):
                'TOTA A PAGAR':TOTAPAGAR,
                  },
       )
-     
-    
-       
-      
+         
       
   return listSCRAPIADO
     
- 
 def export(Carpeta,tabla):
      
      datosscrap=str(tabla) 
@@ -454,12 +418,7 @@ DESCARGAR"""," " )
         f = open(nom, "a")
         f.write(outmensaje)
         f.close() 
-     
-         
-          
-        
-
-                        
+                      
 def cambionombre(origen, destino):
     archivo = origen
     nombre_nuevo = destino
@@ -470,121 +429,6 @@ def cambionombre(origen, destino):
     print("Destino → "+ nombre_nuevo )
 
     os.rename(archivo, nombre_nuevo)
-     
-
-def FormatoSolicitud(h,CUOTA, valor):
-   tba=Resumen()
- #formato de resumen 
-   for rem in tba:
-        N=str(rem[0])
-        
-        
-        if N == str(h):
-         
-         
-         print("Diligenciamos formato de Solicitud de la hoja  "+str(h) +"  Con la cuota  "+str(CUOTA)+"  con el monto a pagar  "+str(valor))    
-         Rut=str(rem[2])
-         
-         origen='Data\\Formato Solicitud Pago.xlsx'         
-         destino="Formato Solicitud\\"+CUOTA +" " +" Monto " + str(valor) + " Formato Solicitud Pago.xlsx"
-         
-         print("Destinos → "+destino)
-    #Copias el libro de formato de solicitud
-         shutil.copy(origen,destino )
-         
-        
-         lib.open_workbook(destino)        #ubicacion del libro
-         lib.read_worksheet("Solicitud")                                                                   #nombre de la hoja                                          
-         formato=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data
-        
-         NombreSolicitante=rem[8]
-         print(NombreSolicitante)
-         now = str(datetime.now())
-         print(now)
-         gerente=Pyasset(asset="Gerente")
-         print(gerente)
-         InmobiliariaGiradora=str(rem[3])
-         print(InmobiliariaGiradora)
-         Monto=str(valor)
-         print(Monto)
-         Rut=str(rem[2])
-         print(Rut)
-         RUTtesoria=Pyasset(asset="RutTesoreria")
-         print(RUTtesoria)
-         Dirección=Pyasset(asset="Dirección")
-         print(Dirección)
-         Glosagasto="Pago de sobretasa cuota "+str(CUOTA)
-         print(Glosagasto)
-         Detallegasto= Glosagasto
-         print(Detallegasto)
-         CentroGestion=str(rem[12])
-         print(CentroGestion)
-
-
-        """   listSFormato.append({
-                    'pathubicacion':"Formato Solicitud\\"+CUOTA +" " +" Monto " + str(valor) + " Formato Solicitud Pago.xlsx",
-                    'Nombre Solicitante':rem[8], 
-                    'fecha':str(datetime.now()),
-                    'gerente':str(Pyasset(asset="Gerente")),
-                        'Rut':rem[2],
-                        'Monto':str(valor),
-                        'RUTtesoria':str(Pyasset(asset="RutTesoreria")),
-                        'Direccio':str(Pyasset(asset="Dirección")),
-                        'Glosagasto':"Pago de sobretasa cuota "+str(CUOTA),
-                        'Detallegasto':"Pago de sobretasa cuota "+str(CUOTA),
-                        'CentroGestion':str(rem[12]),
-                        'Contribuciones':str(rem[12]),
-                        },
-            )
-
-
-
-
-
-        except:
-            
-            pass
-         
-  
-        print(listSFormato) 
-
-        
-        return listSFormato"""
-       
-def diligenciamiento_formatos():
- dtform = listSFormato   
-
-
- for dt in dtform:
-            pathubicacion=  dt.get("pathubicacion")
-            NombreSolicitante= dt.get("NombreSolicitante")
-            now=dt.get("fecha")
-            gerente=dt.get("gerente")
-            InmobiliariaGiradora=dt.get("pathubicacion")
-            Rut=dt.get("Rut")
-            Monto=dt.get("Monto")
-            RUTtesoria=dt.get("RUTtesoria")
-            Dirección=dt.get("Direccio")
-            Glosagasto=dt.get("Glosagasto")
-            Detallegasto=dt.get("Detallegasto")
-            CentroGestion=dt.get("CentroGestion")
-            Contribuciones=dt.get("Contribuciones")
-
-            celdaexcel (pathubicacion,
-                        NombreSolicitante,
-                        now,gerente,
-                        InmobiliariaGiradora,
-                        Rut,
-                        Monto,
-                        RUTtesoria,
-                        Dirección,
-                        Glosagasto,
-                        Detallegasto,
-                        CentroGestion,
-                        Contribuciones)
-            
-  
-
 
 def Resumen():
     lib.open_workbook("Data\\Resumen_Contribuciones_Terreno_2023.xlsx")      #ubicacion del libro
@@ -599,60 +443,9 @@ def master():
 
    return DtMaster
 
-def celdaexcel (pathubicacion,NombreSolicitante,now,gerente,InmobiliariaGiradora,Rut,Monto,RUTtesoria,Dirección,Glosagasto,Detallegasto,CentroGestion,Contribuciones):
-   lib.open_workbook(pathubicacion)        #ubicacion del libro
-   lib.read_worksheet('Solicitud')       #nombre de la hoja
-   lib.read_worksheet('Solicitud')       #activamos las cabezeras
-   lista=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data 
-   lib.set_cell_value(8,"D",NombreSolicitante)
-   lib.set_cell_value(6,"H",now)
-   lib.set_cell_value(10,"D",gerente)
-   lib.set_cell_value(12,"D",InmobiliariaGiradora)
-   lib.set_cell_value(12,"H",Rut)  
-   lib.set_cell_value(14,"C",Monto)
-   lib.set_cell_value(14,"C",RUTtesoria)
-   lib.set_cell_value(20,"C",Dirección)
-   lib.set_cell_value(22,"D",Glosagasto)
-   lib.set_cell_value(24,"D",Detallegasto)
-   lib.set_cell_value(28,"D",CentroGestion)
-   lib.set_cell_value(30,"D",Contribuciones)
-   lib.save_workbook()
-"""
-pathubicacion="Formato Solicitud//9-2017  Monto 107918995 Formato Solicitud Pago.xlsx"
-NombreSolicitante="NombreSolicitante"
-now="now"
-gerente="gerente"
-InmobiliariaGiradora="InmobiliariaGiradora"
-Rut="Rut" 
-Monto="Monto"
-RUTtesoria="RUTtesoria"
-Dirección="gkks"
-Glosagasto="Glosagasto"
-Detallegasto="Detallegasto"
-CentroGestion="CentroGestion"
-Contribuciones="Contribuciones"
-
-
-celdaexcel (pathubicacion,
-            NombreSolicitante,
-            now,
-            gerente,
-            InmobiliariaGiradora,
-            Rut,
-            Monto,
-            RUTtesoria,
-            Dirección,
-            Glosagasto,
-            Detallegasto,
-            CentroGestion,
-            Contribuciones,)
-
-"""
-
-
 def diligenciarResumen(h,carpeta):
     dtcon=txtscraping(carpeta)
-
+   
        #ahora = datetime.now()
        #consulta=str(ahora.year)
     consulta="2018"
@@ -665,8 +458,6 @@ def diligenciarResumen(h,carpeta):
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
                 v = VALOR
-             
-        
         
                 lib.open_workbook("Data\\Resumen_Contribuciones_Terreno_2023.xlsx")      #ubicacion del libro
                 lib.read_worksheet("Resumen")                                              #nombre de la hoja
@@ -674,25 +465,23 @@ def diligenciarResumen(h,carpeta):
 
                 cantidad=lib.find_empty_row()
 
-                #Limpiando celdas
-                #for celda in range(cantidad):
-                #   lib.set_cell_value(2+celda,"E","")
-                #   lib.set_cell_value(2+celda,"F","Sin rol vigente ")
-
                 #Ingresamos los valores 
                 for celda in range(cantidad):
                 
                     Numero=lib.get_cell_value(2+celda,"A")
                     if Numero==h:
                             lib.set_cell_value(2+celda,"E",str(v))
-                            lib.set_cell_value(2+celda,"f","Contribucion Cuota "+str(cu))
-                            lib.save_workbook()        
-
-
-         
-
+                            lib.set_cell_value(2+celda,"f","pago contribucciones "+str(cu))
+                            lib.save_workbook() 
+                                
 def formatosolicitusd(h,carpeta):
+
     dtcon=txtscraping(carpeta)
+    total=totalMacro(h)
+
+    fecha_actual = datetime.now()
+
+    fecha_formateada = fecha_actual.strftime('%d/%m/%Y')
 
     #ahora = datetime.now()
     #consulta=str(ahora.year)
@@ -703,108 +492,303 @@ def formatosolicitusd(h,carpeta):
             CUOTA = txt.get('CUOTA') 
                        
             VALOR=  txt.get('VALOR')
-           # if str(CUOTA)[2:]==consulta : 
-            cu = CUOTA             
-            v = VALOR 
-            origen='Data\\Formato Solicitud Pago.xlsx'         
-            destino="Formato Solicitud\\"+carpeta +" " +" Cuota " + str(cu) + " Formato Solicitud Pago.xlsx"
-            #shutil.copy(origen,destino )
+            if str(CUOTA)[2:]==consulta : 
+                cu = CUOTA             
+                v = VALOR 
+                origen='Data\\Formato Solicitud Pago.xlsx'         
+                destino="Formato Solicitud\\"+carpeta +" " +" Cuota " + str(cu) + " Formato Solicitud Pago.xlsx"
+                #shutil.copy(origen,destino )
 
-                  
-                
-            datac=Resumen()
+                    
+                    
+                datac=Resumen()
 
-            for x in datac:
-                     if x[0]==h:
-                      
-                      lib.open_workbook(origen)      
-                      lib.read_worksheet("Solicitud")                                              
-                      libroresumen=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data
-                      
-                      lib.set_cell_value(8,"D",str(x[8]))
-                      
-                      lib.set_cell_value(6,"H",str(datetime.now()))
-                      lib.set_cell_value(10,"D","franklin")
-                      lib.set_cell_value(12,"D",str(x[3]))
-                      lib.set_cell_value(12,"H",str(x[2]))  
-                      lib.set_cell_value(14,"C",str(v))
-                      lib.set_cell_value(14,"C","60.805.000-0")
-                      lib.set_cell_value(20,"C","Teatinos 28, Santiago")
-                      lib.set_cell_value(22,"D","Pago de sobretasa cuota "+str(CUOTA))
-                      lib.set_cell_value(24,"D","Pago de sobretasa cuota "+str(CUOTA))
-                      lib.set_cell_value(28,"D",str(x[12]))
-                      lib.set_cell_value(30,"D",str(x[12]))
-                      lib.save_workbook(destino)
-                      lib.close_workbook()
-                          
+                for x in datac:
+                    if x[0]==h:
+                        
+                        lib.open_workbook(origen)      
+                        lib.read_worksheet("Solicitud")                                              
+                        libroresumen=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data
+                        
+                        lib.set_cell_value(8,"D",str(x[8]))
 
-def diligenciarhojas(h,carpeta,REGION,COMUNA,ROLMATRIZ):
+                        lib.set_cell_value(6,"H",str(fecha_formateada))
+                        lib.set_cell_value(10,"D","Enrique Carrasco")
+                        lib.set_cell_value(12,"D",str(x[3]))
+                        lib.set_cell_value(12,"H",str(x[2]))  
+                        lib.set_cell_value(14,"C",int(total), fmt="0.00")
+                        lib.set_cell_value(20,"C","Teatinos 28, Santiago")
+                        lib.set_cell_value(22,"D","pago contribucciones "+str(CUOTA))
+                        lib.set_cell_value(24,"D","pago contribucciones "+str(CUOTA))
+                        lib.set_cell_value(26,"D",str(x[12]))
+                        lib.set_cell_value(28,"D",str(x[12]))
+                        lib.set_cell_value(30,"D",str("Contribucciones"))
+                        lib.save_workbook(destino)
+                        lib.close_workbook()
+                        
+def diligenciarhojas(h,carpeta,REGION,COMUNA,ROLMATRIZ,RUT,INMOBILIARIA,rol1,rol2):
     dtcon=txtscraping(carpeta)
     R=0
+    celda=0
 
+    for txt in dtcon:
+         celda=1+celda
+
+    print("el total de celdas es → "+str(celda))
+    
     for txt in dtcon:
             CUOTA = txt.get('CUOTA') 
             print(CUOTA)           
             VALOR=  txt.get('VALOR')
         
             lib.open_workbook("Data\\Resumen_Contribuciones_Terreno_2023.xlsx")      #ubicacion del libro
-            lib.read_worksheet(h)                                              #nombre de la hoja
-            libroresumen=lib.read_worksheet_as_table(name=h,header=True, start=1).data    
+            lib.read_worksheet(str(h))                                                  #nombre de la hoja
+            libroresumen=lib.read_worksheet_as_table(name=str(h),header=True, start=1).data    
             
-            RUT=lib.get_cell_value(7,"B")
-            INMOBILIARIA=lib.get_cell_value(7,"C")
-            Reg=lib.get_cell_value(7,"D")
-            Com=lib.get_cell_value(7,"E")
-            RMatriz=lib.get_cell_value(7,"F")
-            InfoTesoreria=lib.get_cell_value(7,"G")
-
+            R=1+R 
+                       
+            lib.set_cell_value(6+R,"B",RUT) 
+            lib.set_cell_value(6+R,"C",INMOBILIARIA)
+            lib.set_cell_value(6+R,"D",REGION)
+            lib.set_cell_value(6+R,"E",COMUNA)
+            lib.set_cell_value(6,"H","Monto")
+            lib.set_cell_value(5+R,"H",VALOR,fmt="0.00")
+            lib.set_cell_value(6+R,"D",REGION)
+            lib.set_cell_value(6+R,"E",COMUNA)
+            lib.set_cell_value(6+R,"F",ROLMATRIZ)                   
+            lib.save_workbook()
+            
+    print("el total de R es → "+str(R))
+    R=0       
+    lib.clear_cell_range("B16:H77")        
+    for txt in dtcon:
+            CUOTA = txt.get('CUOTA')                        
+            VALOR=  txt.get('VALOR')
             R=1+R
-            if R==1:
-            
-                lib.set_cell_value(6+R,"B",RUT) 
-                lib.set_cell_value(6+R,"C",INMOBILIARIA)
-                lib.set_cell_value(6+R,"D",Reg)
-                lib.set_cell_value(6+R,"E",Com)
-                lib.set_cell_value(6+R,"F",RMatriz)
-                lib.set_cell_value(6+R,"G",RMatriz)
-                
-                lib.set_cell_value(6,"H","Monto")
-                lib.set_cell_value(5+R,"H",VALOR)
-                #lib.set_cell_value(6+R,"D",REGION)
-                #lib.set_cell_value(6+R,"E",COMUNA)
-                #lib.set_cell_value(6+R,"F",COMUNA)
-                
-                lib.save_workbook()
+            VO=lib.get_cell_value(5+R,"H")
+            if VO is None:
+                print(VO)
+                lib.set_cell_value(5+R,"G"," ")
+                lib.set_cell_value(5+R,"F"," ")
+                lib.set_cell_value(5+R,"E"," ")
+                lib.set_cell_value(5+R,"D"," ")
+                lib.set_cell_value(5+R,"C"," ")
+                lib.set_cell_value(5+R,"B"," ")
+                break
             else:
-                 print("------------------------------------------")
-            
-            
-    lib.set_cell_value(7+(R+2),"G","Total") 
-    lib.set_cell_formula("H18","=SUBTOTALES(9;H7:H17)")
-    lib.save_workbook("Salida\\Resumen_Contribuciones_Terreno_2023.xlsx") 
-    lib.close_workbook ()      
+                lib.set_cell_value(5+R,"G",CUOTA,fmt="0")
 
+        
+       
+            
+    #lib.set_cell_value(7+(R+2),"G","Total") 
+    #lib.set_cell_formula("H17","=SUMA(H7:H16)",True)
+   
+    lib.set_cell_value(6,"H","Monto") 
+    lib.save_workbook("Salida\\Resumen_Contribuciones_Terreno_2023.xlsx")#"Salida\\Resumen_Contribuciones_Terreno_2023.xlsx"
+    lib.close_workbook ()      
 
 def bakup():
      
      print("Realizamos el bakup")
-
-    
-
      origen='Data\\BACKUP\\Resumen_Contribuciones_Terreno_2023.xlsx'         
      destino="Data\\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
 
+def creacioncarpetas (carpeta):
 
-         
+    os.mkdir('PDF/'+carpeta)    
+    print("creacion de carpetas  PDF/"+carpeta) 
+
+def Macros (h):
+    lib.open_workbook("Data\Macro TGR.xlsm")      
+    lib.read_worksheet("MACRO")                                                                     
+    libroresumen=lib.read_worksheet_as_table(name="MACRO",header=True, start=1).data 
+
+    lib.set_cell_value(3,"B",str(h))
+    lib.save_workbook()
+    lib.close_workbook()
+    time.sleep(10)
+
+    app.open_application(visible=True)
+    app.open_workbook('Data\Macro TGR.xlsm')
+    app.set_active_worksheet(sheetname="MACRO")
+    time.sleep(5)
+    app.run_macro("Main")
+    time.sleep(5)
+    app.save_excel()
+    app.quit_application()
+
+def totalMacro(h):
+    lib.open_workbook("Data\Resumen_Contribuciones_Terreno_2023.xlsx")      
+    lib.read_worksheet(h)                                                                     
+    libroresumen=lib.read_worksheet_as_table(name=str(h),header=True, start=1).data 
+
+    TOTAL =lib.get_cell_value(20,"H")
+
+    lib.save_workbook()
+    lib.close_workbook()
+    return TOTAL
+
+def formatoTotal(h,carpeta):
 
 
-      
-            
+    totalv=int(totalMacro(h))
+    print(str(totalv))
+    
+    dtcon=txtscraping(carpeta)
 
+    fecha_actual = datetime.now()
 
-
+    fecha_formateada = fecha_actual.strftime('%d/%m/%Y')
     
 
+    #ahora = datetime.now()
+    #consulta=str(ahora.year)
+    consulta="2018"
+    
+      
+    for txt in dtcon:
+            CUOTA = txt.get('CUOTA') 
+                       
+            VALOR=  txt.get('VALOR')
+            if str(CUOTA)[2:]==consulta : 
+                cu = CUOTA             
+                v = VALOR 
+       
+                destino="Formato Solicitud\\"+carpeta +" " +" Cuota " + str(cu) + " Formato Solicitud Pago.xlsx"
+                #shutil.copy(origen,destino )
+
+                datac=Resumen()
+
+                for x in datac:
+                    if x[0]==h:
+
+                        lib.open_workbook(destino)      
+                        lib.read_worksheet("Solicitud")                                                                     
+                        libroresumen=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data 
+
+                    
+                        lib.set_cell_value(14,"C",int(totalv), fmt="0.00")
+                        
+
+            
+
+    lib.save_workbook()
+    lib.close_workbook()
+
+def fGuardar(h,carpeta):
+
+    dtcon=txtscraping(carpeta)
+
+    fecha_actual = datetime.now()
+
+    fecha_formateada = fecha_actual.strftime('%d/%m/%Y')
+
+    #ahora = datetime.now()
+    #consulta=str(ahora.year)
+    consulta="2018"
+    
+      
+    for txt in dtcon:
+            CUOTA = txt.get('CUOTA') 
+                       
+            VALOR=  txt.get('VALOR')
+            if str(CUOTA)[2:]==consulta : 
+                cu = CUOTA             
+                v = VALOR 
+     
+    destino="Formato Solicitud\\"+carpeta +" " +" Cuota " + str(cu) + ".xlsm"
+
+    lib.open_workbook("Data\Resumen_Contribuciones_Terreno_2023.xlsm")      
+    lib.read_worksheet("Solicitud")                                                                     
+    libroresumen=lib.read_worksheet_as_table(name='Solicitud',header=True, start=1).data 
+
+    lib.set_cell_value(1,"k",int(h))
+
+    lib.save_workbook(destino)
+    lib.close_workbook()
+
+def ResumenFinal ():
+     lib.open_workbook('Data\Resumen_Contribuciones_Terreno_2023.xlsx')        #ubicacion del libro
+     lib.read_worksheet('Resumen')       #nombre de la hoja
+     lista=lib.read_worksheet_as_table(name='Resumen',header=True, start=1).data
+
+     ultimaFila= lib.find_empty_row()
+
+     for celda in range(ultimaFila):
+         TOTAL= lib.get_cell_value(2+int(celda),"E")
+         if TOTAL == "=+'1'!$H$9":
+              print("True "+str(TOTAL))
+         else:
+              print("false "+str(TOTAL))
+              HOJA=lib.get_cell_value(2+int(celda),"A")
+              
+              lib.read_worksheet(str(HOJA))
+              tablaTotal=lib.get_cell_value(20,"H")
+             
+
+              lib.read_worksheet('Resumen')
+              lib.set_cell_value(2+int(celda),"E",int(tablaTotal))
 
 
+
+              lib.save_workbook()
+              lib.close_workbook()
+
+def limpiarResumen():
+     
+     
+     lib.open_workbook("Data\\Resumen_Contribuciones_Terreno_2023.xlsx")      #ubicacion del libro
+     lib.read_worksheet("94")                                                 #nombre de la hoja
+     libroresumen=lib.read_worksheet_as_table(name="94",header=True, start=1).data  
+      
+
+     lib.clear_cell_range("G7:G1000")
+     rango="B{}:H{}"
+     
+     #Comparaciones 
+     item1=lib.get_cell_value(7,"H")
+     item2=lib.get_cell_value(8,"H")
+     item3=lib.get_cell_value(9,"H")
+     item4=lib.get_cell_value(10,"H")
+     item5=lib.get_cell_value(11,"H")
+     item6=lib.get_cell_value(12,"H")
+     item7=lib.get_cell_value(13,"H")
+     item8=lib.get_cell_value(14,"H")
+     item9=lib.get_cell_value(16,"H")
+     item10=lib.get_cell_value(17,"H")
+      
+     busquedad=0
+     for x in range(1000):           
+            Cels=str(x+8)
+                   
+            if item1==lib.get_cell_value(7,"H"):
+               busquedad=1+busquedad   
+            elif busquedad>1:      
+               lib.clear_cell_range(rango.format(Cels,Cels))
+
+     busquedad=0
+     for x in range(1000):           
+            Cels=str(x+9)
+                   
+            if item1==lib.get_cell_value(8,"H"):
+               busquedad=1+busquedad   
+            elif busquedad>1:      
+               lib.clear_cell_range(rango.format(Cels,Cels))
+
+
+
+
+     lib.save_workbook()
+     lib.close_workbook()
+
+def salida():
+     print("Realizamos la salida ")
+     origen='Data\Resumen_Contribuciones_Terreno_2023.xlsx'         
+     destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
+     shutil.copy(origen,destino )
+
+
+
+                    

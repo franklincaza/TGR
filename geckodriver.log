@@ -1,0 +1,309 @@
+1690511246901	geckodriver	INFO	Listening on 127.0.0.1:50669
+1690511249939	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "50670" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofileAfeMI5"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690511250328	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690511250420	Marionette	INFO	Listening on port 50677
+WebDriver BiDi listening on ws://127.0.0.1:50670
+Read port: 50677
+1690511250646	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50670/devtools/browser/56fcefa0-57d4-4b68-921c-e94163c03989
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+JavaScript error: https://www.tesoreria.cl/resources/js/funciones.js?20160617, line 1: SyntaxError: expected expression, got '<'
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+1690511488737	Marionette	INFO	Stopped listening on port 50677
+Dynamically enable window occlusion 1
+1690989935078	geckodriver	INFO	Listening on 127.0.0.1:53813
+1690989938129	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "53814" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofileQEDAhZ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690989938527	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690989938613	Marionette	INFO	Listening on port 53821
+WebDriver BiDi listening on ws://127.0.0.1:53814
+Read port: 53821
+1690989938852	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53814/devtools/browser/c75d53ba-7dc4-4976-9f49-6225fdd590b8
+[Parent 3936, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 36196, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 3936, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 36196, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+JavaScript error: https://www.tesoreria.cl/resources/js/funciones.js?20160617, line 1: SyntaxError: expected expression, got '<'
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+1691642367926	geckodriver	INFO	Listening on 127.0.0.1:62566
+1691642370953	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "62567" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofileqaVfS5"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691642371287	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691642371368	Marionette	INFO	Listening on port 62574
+WebDriver BiDi listening on ws://127.0.0.1:62567
+Read port: 62574
+1691642371607	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62567/devtools/browser/78b07bb4-d18a-406e-8f5f-5dc5a8a7ae0f
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691642415901	Marionette	INFO	Stopped listening on port 62574
+Dynamically enable window occlusion 1
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[Parent 30156, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[GPU 25928, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691642453472	geckodriver	INFO	Listening on 127.0.0.1:62688
+1691642456509	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "62689" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofilevnGF9y"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691642456778	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691642456858	Marionette	INFO	Listening on port 62696
+WebDriver BiDi listening on ws://127.0.0.1:62689
+Read port: 62696
+1691642457081	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62689/devtools/browser/a76977ce-70c6-49b1-8e10-cb809fe47062
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691642504739	Marionette	INFO	Stopped listening on port 62696
+Dynamically enable window occlusion 1
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27716, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 29252, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691642648285	geckodriver	INFO	Listening on 127.0.0.1:62839
+1691642651320	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "62840" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofileuuOStm"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691642651588	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691642651658	Marionette	INFO	Listening on port 62847
+WebDriver BiDi listening on ws://127.0.0.1:62840
+Read port: 62847
+1691642651872	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62840/devtools/browser/36e0ec9b-0fab-493d-8ddc-876a3b4cd192
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691642694479	Marionette	INFO	Stopped listening on port 62847
+Dynamically enable window occlusion 1
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 32028, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 28284, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691642701552	geckodriver	INFO	Listening on 127.0.0.1:62927
+1691642704593	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "62928" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofilefJYFgc"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691642704836	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691642704910	Marionette	INFO	Listening on port 62935
+WebDriver BiDi listening on ws://127.0.0.1:62928
+Read port: 62935
+1691642705112	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62928/devtools/browser/75b4358d-1bdd-4d71-a7e8-52ca5d7fb880
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691642748596	Marionette	INFO	Stopped listening on port 62935
+Dynamically enable window occlusion 1
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 8944, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 27244, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691643878772	geckodriver	INFO	Listening on 127.0.0.1:63180
+1691643881803	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63181" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofile7Z2rc0"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691643882153	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691643882232	Marionette	INFO	Listening on port 63189
+WebDriver BiDi listening on ws://127.0.0.1:63181
+Read port: 63189
+1691643882450	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63181/devtools/browser/53fdec49-1c9a-4454-ba38-e037f3873d0a
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691643929850	Marionette	INFO	Stopped listening on port 63189
+Dynamically enable window occlusion 1
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 21608, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 8096, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691643942467	geckodriver	INFO	Listening on 127.0.0.1:63268
+1691643945504	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63269" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofile1YYEPI"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691643945783	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691643945858	Marionette	INFO	Listening on port 63278
+WebDriver BiDi listening on ws://127.0.0.1:63269
+Read port: 63278
+1691643946081	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63269/devtools/browser/f5229b08-a2d3-4384-bb8e-4f7295f8d92d
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.tesoreria.cl."
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 597))
+1691643990329	Marionette	INFO	Stopped listening on port 63278
+Dynamically enable window occlusion 1
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 25372, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 23148, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+1691644049685	geckodriver	INFO	Listening on 127.0.0.1:63364
+1691644052707	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63365" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\FRANKLIN\\AppData\\Local\\Temp\\rust_mozprofileyB4Axd"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1691644052953	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1691644053031	Marionette	INFO	Listening on port 63374
+WebDriver BiDi listening on ws://127.0.0.1:63365
+Read port: 63374
+1691644053146	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63365/devtools/browser/bcd8ced2-d59f-402d-adc3-e1a9f545a6ee
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=G-BP9N6YHEFK&l=dataLayer&cx=c, line 185: Script terminated by timeout at:
+l@https://www.googletagmanager.com/gtag/js?id=G-BP9N6YHEFK&l=dataLayer&cx=c:185:17
+lz@https://www.googletagmanager.com/gtag/js?id=G-BP9N6YHEFK&l=dataLayer&cx=c:469:134
+mz/<@https://www.googletagmanager.com/gtag/js?id=G-BP9N6YHEFK&l=dataLayer&cx=c:469:111
+
+1691644057715	Marionette	INFO	Stopped listening on port 63374
+Dynamically enable window occlusion 1
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443
+[Parent 27552, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:621
+[GPU 31584, IPC I/O Child] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:443

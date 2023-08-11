@@ -45,8 +45,8 @@ listSCRAPIADO= ([{
 
 def Dt_BaseTerreno():
     lib.open_workbook("")      #ubicacion del libro
-    lib.read_worksheet("")       #nombre de la hoja
-    lista=lib.read_worksheet_as_table(name='Base Terreno',header=True, start=1).data
+    lib.read_worksheet("Base existencia")       #nombre de la hoja
+    lista=lib.read_worksheet_as_table(name='Base existencia',header=True, start=1).data
     return lista
 
     
@@ -281,6 +281,7 @@ def ejemplo(CUOTA,valor):
         lib.set_cell_value(28,"D",str(CentroGestion))
         lib.set_cell_value(30,"D","Contribuciones")
         lib.save_workbook()
+
 
 
 
