@@ -114,6 +114,10 @@ def task():
                 except:
                         pass
                         
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef8b97fea3e6ec85e691ae382088ebe9938b7ef4
 def tgc():
  task()                   
     
