@@ -50,13 +50,20 @@ def Pyasset(asset):
         
             return exitdato
 
-def openweb(url):
-    browser.open_available_browser(url,browser_selection="firefox")
+def openweb(u):
+
+    browser.open_available_browser(u,browser_selection="firefox",use_profile=True)
+   
+   
+    #browser.open_available_browser(url=u,browser_selection="Chrome",use_profile=True,profile_name="franklin ramirez", profile_path=tpath)
+    #browser.open_available_browser(url=u)
     browser.maximize_browser_window() 
+
     validacion= browser.get_text("//DIV[@class='dentro_letra'][text()='Contribuciones']")
     if validacion == 'Contribuciones': print("ingresando a "+validacion) 
     state_tgc_Inicio=True
-    time.sleep(random.uniform(1,3))
+ 
+    time.sleep(random.uniform(5,7))
 
 def clickweb(elemento):
     time.sleep(random.uniform(1,2))
@@ -332,9 +339,6 @@ def savepdf(carpeta,consecutivo,cuota,rol):
    
 def txtscraping(carpeta):
   f=open('Log Scraping/'+carpeta+".txt","r")
-    
-
-    
 
   scrp=[]
   for x in f:
@@ -791,4 +795,3 @@ def salida():
 
 
 
-                    

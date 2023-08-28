@@ -1,4 +1,5 @@
 import defRPAselenium
+import moldesTerrenos
 import models
 from RPA.Browser.Selenium import Selenium;
 import os
@@ -6,8 +7,14 @@ from shutil import rmtree
 import time
 
 browser = Selenium()
-Dt=models.master()
-
+Dt=moldesTerrenos.masterlibros()
+try:
+ moldesTerrenos.task_Modelos()
+ moldesTerrenos.Asignaconsultafecha()
+ moldesTerrenos.task_Modelos()
+ moldesTerrenos.Asignaconsultafecha()
+except:
+    pass
 
 urlbase=defRPAselenium.Pyasset(asset="base")
 UrlMacro=defRPAselenium.Pyasset(asset="Ruta ")
@@ -19,12 +26,12 @@ def eliminarcarpetas():
         rmtree("CSV")
         rmtree("Log Scraping")
         rmtree("Formato Solicitud")
-        rmtree("Salida")      
+        rmtree("Salida") 
+        rmtree('Excel')     
         print("Eliminamos carpetas")
 
     except:
         pass
-
 
 def Creacionescarpetas():
     print("Creado las carpetas para PDF's")
@@ -32,6 +39,7 @@ def Creacionescarpetas():
     try:
         os.mkdir('PDF')
         os.mkdir('CSV')
+        os.mkdir('Excel')
         os.mkdir("Formato Solicitud")  
         os.mkdir("Log Scraping")
         os.mkdir("Salida") 
@@ -42,22 +50,21 @@ def Creacionescarpetas():
 def task():
     
         for dtable in Dt:
-            if dtable[5] == "SI":
-                strcomuna="{} [{}]"
-                strrolmatriz="{}- {}"
-                Rut=str(dtable[0])
+            if dtable[16] == "SI":
+
+                Rut=str(dtable[3])
                 Inmobiliaria=dtable[1]
                 Asset=dtable[2]
-                Carpeta=dtable[3]
-                Hoja=dtable[4]
+                
+                Carpeta=str(dtable[9]+" "+dtable[7])
+                Hoja=dtable[8]
                 Activo=dtable[5]
-                region=dtable[6]
-                comuna=strcomuna.format(dtable[7],dtable[10])
-                rolmatriz=strrolmatriz.format(dtable[8],dtable[9])
-                rol1=dtable[8]                               
-                rol2=dtable[9]
-                Codigo=dtable[10]
- 
+                region=dtable[8]
+                rolmatriz=dtable[7]
+                rol1=dtable[5]                               
+                rol2=dtable[6]
+                Codigo=dtable[15]
+                comuna=dtable[15]
 
 
                 defRPAselenium.LOGconsulta(region,comuna,rol1,rol2)
@@ -88,36 +95,35 @@ def task():
                 try:
 
                     print("----------------Diligenciando resumen--------------------------------------- ")
-                    defRPAselenium.diligenciarResumen(Hoja,Carpeta)
+                    # defRPAselenium.diligenciarResumen(Hoja,Carpeta)
+                    moldesTerrenos.logscraping(Carpeta,rolmatriz)
+                    
 
                     print("----------------Diligenciando hojas resumen por sheets de excel--------------- ")
-                    defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,str(rolmatriz),str(Rut),str(Inmobiliaria),str(rol1),str(rol2)) 
-
+                    #defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,str(rolmatriz),str(Rut),str(Inmobiliaria),str(rol1),str(rol2)) 
+                    moldesTerrenos.salida(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
                     print("----------------Ejecutando Macros-------------------------------------------- ")
-                    defRPAselenium.Macros(str(Hoja))
-                    defRPAselenium.Macros(str(Hoja))
+                   # defRPAselenium.Macros(str(Hoja))
+                   # defRPAselenium.Macros(str(Hoja))
                     
                     print("----------------Diligenciando Formato de solicitud--------------------------- ")
-                    defRPAselenium.formatosolicitusd(Hoja,Carpeta)
+                   # defRPAselenium.formatosolicitusd(Hoja,Carpeta)
 
                     
 
                 except:
                         pass
-                
-
-
-    
-           
-
+                        
 def tgc():
  task()                   
     
          
 if __name__ == "__main__":
+   
    eliminarcarpetas()
    Creacionescarpetas()
    defRPAselenium.bakup()
+  
    tgc()
    models.txttocsv()
    defRPAselenium.salida()
