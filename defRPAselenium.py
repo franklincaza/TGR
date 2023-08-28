@@ -50,13 +50,20 @@ def Pyasset(asset):
         
             return exitdato
 
-def openweb(url):
-    browser.open_available_browser(url,browser_selection="firefox")
+def openweb(u):
+
+    browser.open_available_browser(u,browser_selection="firefox")
+   
+   
+    #browser.open_available_browser(url=u,browser_selection="Chrome",use_profile=True,profile_name="franklin ramirez", profile_path=tpath)
+    #browser.open_available_browser(url=u)
     browser.maximize_browser_window() 
+
     validacion= browser.get_text("//DIV[@class='dentro_letra'][text()='Contribuciones']")
     if validacion == 'Contribuciones': print("ingresando a "+validacion) 
     state_tgc_Inicio=True
-    time.sleep(random.uniform(1,3))
+ 
+    time.sleep(random.uniform(5,7))
 
 def clickweb(elemento):
     time.sleep(random.uniform(1,2))
@@ -611,6 +618,11 @@ def Macros (h):
     time.sleep(10)
 
     app.open_application(visible=True)
+    try:
+         library.click("name:Cerrar")
+    except:
+         pass
+
     app.open_workbook('Data\Macro TGR.xlsm')
     app.set_active_worksheet(sheetname="MACRO")
     time.sleep(5)
@@ -789,6 +801,3 @@ def salida():
      destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
 
-
-
-                    

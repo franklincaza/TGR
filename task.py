@@ -25,7 +25,6 @@ def eliminarcarpetas():
     except:
         pass
 
-
 def Creacionescarpetas():
     print("Creado las carpetas para PDF's")
 
@@ -104,11 +103,7 @@ def task():
 
                 except:
                         pass
-                
-
-
-    
-           
+                        
 
 def tgc():
  task()                   
