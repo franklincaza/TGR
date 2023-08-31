@@ -5,20 +5,29 @@ from RPA.Browser.Selenium import Selenium;
 import os
 from shutil import rmtree
 import time
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(threadName)s - %(LevelName)s - %(message)s',
+                    filename="logProcess.txt",
+                    filemode="a" )
 
 browser = Selenium()
 Dt=moldesTerrenos.masterlibros()
-try:
- moldesTerrenos.task_Modelos()
- moldesTerrenos.Asignaconsultafecha()
- moldesTerrenos.task_Modelos()
- moldesTerrenos.Asignaconsultafecha()
-except:
-    pass
-
-urlbase=defRPAselenium.Pyasset(asset="base")
+urlbase=str(defRPAselenium.Pyasset(asset="base"))
 UrlMacro=defRPAselenium.Pyasset(asset="Ruta ")
 libro=defRPAselenium.Pyasset(asset="LIBRO ")
+
+
+
+
+#moldesTerrenos.task_Modelos()
+#moldesTerrenos.Asignaconsultafecha()
+
+
+
+
+
 
 def eliminarcarpetas():
     try:
@@ -50,6 +59,7 @@ def Creacionescarpetas():
 def task():
     
         for dtable in Dt:
+         try:
             if dtable[16] == "SI":
 
                 Rut=str(dtable[3])
@@ -66,8 +76,11 @@ def task():
                 Codigo=dtable[15]
                 comuna=dtable[15]
 
-
-                defRPAselenium.LOGconsulta(region,comuna,rol1,rol2)
+                log=defRPAselenium.LOGconsulta(region,comuna,rol1,rol2)
+                logging.info(log)
+         except: 
+                pass 
+                 
                 try:
                  tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
                  
@@ -75,49 +88,47 @@ def task():
                    
                    #Tercer reintento para garantizar continuidad si encuentra Recatchat
                    try: 
-                    print("segundo reintento ") 
+                    logging.warning("segundo reintento ") 
                     time.sleep(3)
                     tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
                    except:
-                    
-                    print("tercer reintento ") 
-                    try:
-                        time.sleep(3)
-                        tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
-                        pass
-                    except:
+                      logging.warning("tercer reintento ") 
+                   try:
+                         time.sleep(3)
+                         tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
+                         pass
+                   except:
                        pass
+                       logging.error("Error en la consulta validar , si fue por tema de retcachat")
                    
                 finally:
                     pass   
                     defRPAselenium.cerraNavegador() 
+                    logging.info("cerrando navegador")
 
                 try:
 
-                    print("----------------Diligenciando resumen--------------------------------------- ")
+                    logging.info("----------------Diligenciando resumen--------------------------------------- ")
                     # defRPAselenium.diligenciarResumen(Hoja,Carpeta)
                     moldesTerrenos.logscraping(Carpeta,rolmatriz)
                     
 
-                    print("----------------Diligenciando hojas resumen por sheets de excel--------------- ")
+                    logging.info("----------------Diligenciando hojas resumen por sheets de excel--------------- ")
                     #defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,str(rolmatriz),str(Rut),str(Inmobiliaria),str(rol1),str(rol2)) 
                     moldesTerrenos.salida(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
-                    print("----------------Ejecutando Macros-------------------------------------------- ")
+                    logging.info("----------------Ejecutando Macros-------------------------------------------- ")
                    # defRPAselenium.Macros(str(Hoja))
                    # defRPAselenium.Macros(str(Hoja))
                     
-                    print("----------------Diligenciando Formato de solicitud--------------------------- ")
+                    logging.info("----------------Diligenciando Formato de solicitud--------------------------- ")
                    # defRPAselenium.formatosolicitusd(Hoja,Carpeta)
 
                     
 
                 except:
+                        logging.error("Error en diligenciamiento de exceles de salida")
                         pass
-                        
-<<<<<<< HEAD
-=======
 
->>>>>>> ef8b97fea3e6ec85e691ae382088ebe9938b7ef4
 def tgc():
  task()                   
     
@@ -129,9 +140,7 @@ if __name__ == "__main__":
    defRPAselenium.bakup()
   
    tgc()
-   models.txttocsv()
-   defRPAselenium.salida()
-   print('Ejecucion finalizada')
+   logging.info('Ejecucion finalizada')
    
  
  

@@ -52,11 +52,10 @@ def Pyasset(asset):
 
 def openweb(u):
 
-<<<<<<< HEAD
     browser.open_available_browser(u,browser_selection="firefox",use_profile=True)
-=======
+
     browser.open_available_browser(u,browser_selection="firefox")
->>>>>>> ef8b97fea3e6ec85e691ae382088ebe9938b7ef4
+
    
    
     #browser.open_available_browser(url=u,browser_selection="Chrome",use_profile=True,profile_name="franklin ramirez", profile_path=tpath)
@@ -802,8 +801,3 @@ def salida():
      destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ef8b97fea3e6ec85e691ae382088ebe9938b7ef4
