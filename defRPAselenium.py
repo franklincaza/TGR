@@ -499,7 +499,7 @@ def formatosolicitusd(h,carpeta):
     for txt in dtcon:
             CUOTA = txt.get('CUOTA') 
                        
-            VALOR=  txt.get('VALOR')
+            VALOR=  txt.get('TOTA A PAGAR')
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
                 v = VALOR 
@@ -666,7 +666,7 @@ def formatoTotal(h,carpeta):
     for txt in dtcon:
             CUOTA = txt.get('CUOTA') 
                        
-            VALOR=  txt.get('VALOR')
+            VALOR=  txt.get('TOTA A PAGAR')
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
                 v = VALOR 

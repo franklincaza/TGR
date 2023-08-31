@@ -203,12 +203,12 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
                'cuota':str(x[0]),
                'Comuna':Comuna,
                'Rolmatriz':Rolmatriz,
-               'Informacion Tesoreria':"Informacion_Tesoreria",
-               'Monto':str(x[1])
+               'Informacion Tesoreria':str(x[0]),
+               'Monto':str(x[4])
                 
                  })
          
-            total=total+int(x[1])
+            total=total+int(x[4])
             print(total)
 
         except:
@@ -275,7 +275,7 @@ Comuna="SAN BERNARDO"
 
 
 #logscraping(carpeta)
-salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna)
+#salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna)
 
 
 
