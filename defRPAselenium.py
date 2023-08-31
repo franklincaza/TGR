@@ -224,6 +224,7 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                     print(tabla) 
                     destacar("//TABLE[@id='example']//tbody//tr//td")
                     
+                    
                    
     except:
         try:# proceso de consulta
@@ -618,8 +619,10 @@ def Macros (h):
     time.sleep(10)
 
     app.open_application(visible=True)
+    time.sleep(10)
     try:
          library.click("name:Cerrar")
+         time.sleep(10)
     except:
          pass
 
@@ -800,4 +803,81 @@ def salida():
      origen='Data\Resumen_Contribuciones_Terreno_2023.xlsx'         
      destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
+
+def Strdiligenciarhojas(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
+
+    lib.open_workbook("Excel/"+carpeta+'.xlsx')        #ubicacion del libro
+    lib.read_worksheet(str(carpeta))       #nombre de la hoja
+    outlista=lib.read_worksheet_as_table(name=str(carpeta),header=True, start=1).data
+    lib.close_workbook()
+    recol=0
+#encabezados
+    tabla=([{ }])
+    
+    for x in outlista:
+
+     if str(x[1])=="None":
+        total=0
+
+     else:
+
+        try:
+            tabla.append({
+               'RUT':rut,
+               'INMOBILIARIA':inmobiliaria, 
+               'Región':Región,
+               'cuota':str(x[0]),
+               'Comuna':Comuna,
+               'Rolmatriz':Rolmatriz,
+               'Informacion Tesoreria':"Informacion_Tesoreria",
+               'Monto':str(x[1])
+                
+                 })
+         
+            total=total+int(x[1])
+            print(total)
+
+        except:
+            pass
+#Diligenciamos los totales        
+    tabla.append({
+
+               'RUT':"",
+               'INMOBILIARIA':"", 
+               'Región':"",
+               'cuota':"",
+               'Comuna':"",
+               'Rolmatriz':"",
+               'Informacion Tesoreria':"total",
+               'Monto':str(total)
+                
+                 })
+    print(tabla)
+    nom="Out Hojas Scraping/"+carpeta+".txt"     
+    f = open(nom, "a")
+    f.write(tabla)
+    f.close() 
+
+
+      
+
+
+
+
+
+
+
+def test():
+
+    h="94"
+    carpeta="94-76182178-4-Inversiones World Logistic"
+    REGION="REGION METROPOLITANA DE SANTIAGO"
+    COMUNA="SAN BERNARDO"
+    ROLMATRIZ="4505-54"
+    RUT="76182178-4"
+    INMOBILIARIA="Inversiones World Logistic"
+    rol1="4505"
+    rol2="54"
+    return h,carpeta,REGION,COMUNA,ROLMATRIZ,RUT,INMOBILIARIA,rol1,rol2
+
 
