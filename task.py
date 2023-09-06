@@ -10,29 +10,21 @@ import logging
 
 
 
+
+
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
                     filename= 'log procesos' )
 
-
+#Calculamos tiempo de ejecucion
+tiempoInicio=time.time()
 
 
 browser = Selenium()
-Dt=moldesTerrenos.masterlibros()
+Dt=models.master()
 urlbase=str(defRPAselenium.Pyasset(asset="base"))
 UrlMacro=defRPAselenium.Pyasset(asset="Ruta ")
 libro=defRPAselenium.Pyasset(asset="LIBRO ")
-
-
-
-
-#moldesTerrenos.task_Modelos()
-#moldesTerrenos.Asignaconsultafecha()
-
-
-
-
-
 
 def eliminarcarpetas():
     try:
@@ -85,8 +77,13 @@ def task():
                     Codigo=dtable[10]
     
 
-
+                    
+                    logging.info("creacion de hoja Resumen")
                     logging.info(defRPAselenium.LOGconsulta(region,comuna,rol1,rol2))
+                    try:
+                     os.remove("Log Scraping\total.txt")
+                    except:
+                        pass
                     
                     cantidad=0
                     consulta=True
@@ -131,44 +128,71 @@ def task():
                        
 
                     try:
-                        logging.info("----------------Diligenciando resumen--------------------------------------- ")
-                        defRPAselenium.diligenciarResumen(Hoja,Carpeta)
-                        stado=False
+                        try:
+                            logging.info("----------------Diligenciando resumen--------------------------------------- ")
+                            defRPAselenium.diligenciarResumen(Hoja,Carpeta)
+                            stado=False
+                        except:
+                            logging.error("Fallo la funcion diligenciarResumen()")
 
+                        try:
+                            logging.info("----------------Diligenciando hojas resumen por sheets de excel--------------- ")
+                            defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,str(rolmatriz),str(Rut),str(Inmobiliaria),str(rol1),str(rol2)) 
+                        except:
+                            logging.error("Fallo la funcion diligenciarhojas()")
 
-                        logging.info("----------------Diligenciando hojas resumen por sheets de excel--------------- ")
-                        defRPAselenium.diligenciarhojas(Hoja,Carpeta,region,comuna,str(rolmatriz),str(Rut),str(Inmobiliaria),str(rol1),str(rol2)) 
+                        logging.info("----------------Ejecutando Macros     -------------------------------------------- ")
+                        try:
+                            defRPAselenium.Macros(str(Hoja))
+                          
+                        except:
+                            logging.error("Fallo la funcio Macros()")
 
-                        logging.info("----------------Ejecutando Macros-------------------------------------------- ")
+                        logging.info("----------------Salidas de excel -------------------------------------------- ")
+                       
 
-                        
-                        defRPAselenium.Macros(str(Hoja))
-                        defRPAselenium.Macros(str(Hoja))
-                        moldesTerrenos.logscraping(Carpeta,str(rolmatriz))
-                        moldesTerrenos.salida(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
-                        defRPAselenium.salida(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
                         
                         logging.info("----------------Diligenciando Formato de solicitud--------------------------- ")
-                        defRPAselenium.formatosolicitusd(Hoja,Carpeta)
+                        try:
+                            defRPAselenium.formatosolicitusd(Hoja,Carpeta)
+                        except:
+                            logging.error("Fallo la funcio formatosolicitusd().")
+
+                        logging.info("----------------TEST TOTALES ------------------------------------------------ ")
+                        
+                        try:
+                                moldesTerrenos.logscraping(Carpeta,str(rolmatriz))
+                        except:
+                                logging.error("Fallo la funcio logscraping()  .")
+                        
+                        try:tabla=moldesTerrenos.lectura(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
+                        except:logging.error("Fallo la funcio lectura().")
+                            
+                        try: moldesTerrenos.datosexceltotal(Hoja,tabla)
+                        except:logging.error("Fallo la funcio datosexceltotal().")
+                        try:moldesTerrenos.subtotal(Hoja)
+                        except:logging.error("Fallo la funcio subtotal().")
+                        try:moldesTerrenos.reporteHojas(Hoja,tabla,region)
+                        except:logging.error("Fallo la funcio reporteHojas().")
+
                     except:
                             pass
                 
-          
-
 def tgc():
- 
    task()  
-
-                       
-    
-         
+                 
 if __name__ == "__main__":
    
-  # eliminarcarpetas()
-  # Creacionescarpetas()
-  #defRPAselenium.bakup()
+   eliminarcarpetas()
+   Creacionescarpetas()
+   moldesTerrenos.creacionExcelResumen()
+   defRPAselenium.bakup()
    tgc()
    logging.info('Ejecucion finalizada')
+   tiempoFinal=time.time() 
+   TiempoTotal=tiempoFinal-tiempoInicio
+   print("Tiempo total de ejecucion es "+str(TiempoTotal) + " seg")
+   logging.info("Tiempo total de ejecucion es "+str(TiempoTotal) + " seg")
    
  
  

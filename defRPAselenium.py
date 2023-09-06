@@ -9,6 +9,14 @@ import os
 import shutil
 from datetime import date
 from datetime import datetime
+import logging
+
+
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+                    filename= 'log procesos' )
+
 
 
 listSCRAPIADO= ([{
@@ -38,7 +46,7 @@ browser = Selenium()
 library = Windows() 
 lib = Files()
 app = Application()
-año="2018"
+año="2023"
 
 def Pyasset(asset):
     lib.open_workbook("PyAsset\Config.xlsx")      #ubicacion del libro
@@ -132,7 +140,7 @@ def recorrerFilasDescargas(carpeta,scraping,rol,hoja):
                 if si == -1:
                     print("la cuota no es visible ")
                 else:
-                    row=int(row-1  )
+                    row=int(row-1)
                     consecutivo=str(row)
                     obtenerTexto("//TABLE[@id='example']//tr["+str(row)+"]//td[3]")
                     FOLIO=obtenerTexto("//TABLE[@id='example']//tr["+str(row)+"]//td[3]")
@@ -207,6 +215,10 @@ def validacion():
        
 def navegacion(region,comuna,rol1,rol2,ruta,hoja):
     def interacion():
+        try:
+          browser.close_browser()
+        except:
+          pass
         openweb("https://www.tesoreria.cl/ContribucionesPorRolWEB/muestraBusqueda?tipoPago=PortalContribPresencial")                             
         clickweb("//SELECT[@id='region']/self::SELECT")
         clickweb("//option[text()='"+region+"']")
@@ -226,7 +238,6 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                     export(ruta,tabla)
                     print(tabla) 
                     destacar("//TABLE[@id='example']//tbody//tr//td")
-                    
                     
                    
     except:
@@ -322,9 +333,12 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         
         origen=txt+"\\"+salida+".pdf"
         destino=txt+"\\"+"Cupon de pago "+str(rol)+" "+str(cuota)+".pdf"
+        library.send_keys(keys="{Enter}")
+        library.send_keys(keys="{Enter}")
+        library.send_keys(keys="{Enter}")
 
         cambionombre(origen, destino)         
-
+ 
     if str(consecutivo)!=str("1"):
         library.send_keys(keys="{Alt}N")
         time.sleep(2)
@@ -416,7 +430,8 @@ EMAIL
 DESCARGAR"""," " )
 
      try:
-        file = open("Log Scraping/"+Carpeta+".txt")
+        file = open("Log Scraping/"+Carpeta+".txt","a")
+        file.write(outmensaje)
         print(file) # File handler
         file.close()
        
@@ -456,7 +471,7 @@ def diligenciarResumen(h,carpeta):
    
        #ahora = datetime.now()
        #consulta=str(ahora.year)
-    consulta="2018"
+    consulta="2023"
     
      
     for txt in dtcon:
@@ -493,13 +508,13 @@ def formatosolicitusd(h,carpeta):
 
     #ahora = datetime.now()
     #consulta=str(ahora.year)
-    consulta="2018"
+    consulta="2023"
     
       
     for txt in dtcon:
             CUOTA = txt.get('CUOTA') 
                        
-            VALOR=  txt.get('TOTA A PAGAR')
+            VALOR=  txt.get('VALOR')
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
                 v = VALOR 
@@ -616,20 +631,22 @@ def Macros (h):
     lib.set_cell_value(3,"B",str(h))
     lib.save_workbook()
     lib.close_workbook()
-    time.sleep(10)
+    
 
     app.open_application(visible=True)
     time.sleep(10)
     try:
          library.click("name:Cerrar")
-         time.sleep(10)
     except:
+         logging.info("No encontro licencia de excel vencida")
          pass
-
+    
+    logging.info("Preparando Macro ingresando")
     app.open_workbook('Data\Macro TGR.xlsm')
     app.set_active_worksheet(sheetname="MACRO")
     time.sleep(5)
     app.run_macro("Main")
+    logging.info("Macro ejecutada con exito")
     time.sleep(5)
     app.save_excel()
     app.quit_application()
@@ -660,13 +677,13 @@ def formatoTotal(h,carpeta):
 
     #ahora = datetime.now()
     #consulta=str(ahora.year)
-    consulta="2018"
+    consulta="2023"
     
       
     for txt in dtcon:
             CUOTA = txt.get('CUOTA') 
                        
-            VALOR=  txt.get('TOTA A PAGAR')
+            VALOR=  txt.get('VALOR')
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
                 v = VALOR 
@@ -702,7 +719,7 @@ def fGuardar(h,carpeta):
 
     #ahora = datetime.now()
     #consulta=str(ahora.year)
-    consulta="2018"
+    consulta="2023"
     
       
     for txt in dtcon:
@@ -799,85 +816,10 @@ def limpiarResumen():
      lib.close_workbook()
 
 def salida():
+     
      print("Realizamos la salida ")
      origen='Data\Resumen_Contribuciones_Terreno_2023.xlsx'         
      destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
-
-def Strdiligenciarhojas(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
-
-    lib.open_workbook("Excel/"+carpeta+'.xlsx')        #ubicacion del libro
-    lib.read_worksheet(str(carpeta))       #nombre de la hoja
-    outlista=lib.read_worksheet_as_table(name=str(carpeta),header=True, start=1).data
-    lib.close_workbook()
-    recol=0
-#encabezados
-    tabla=([{ }])
-    
-    for x in outlista:
-
-     if str(x[1])=="None":
-        total=0
-
-     else:
-
-        try:
-            tabla.append({
-               'RUT':rut,
-               'INMOBILIARIA':inmobiliaria, 
-               'Región':Región,
-               'cuota':str(x[0]),
-               'Comuna':Comuna,
-               'Rolmatriz':Rolmatriz,
-               'Informacion Tesoreria':"Informacion_Tesoreria",
-               'Monto':str(x[1])
-                
-                 })
-         
-            total=total+int(x[1])
-            print(total)
-
-        except:
-            pass
-#Diligenciamos los totales        
-    tabla.append({
-
-               'RUT':"",
-               'INMOBILIARIA':"", 
-               'Región':"",
-               'cuota':"",
-               'Comuna':"",
-               'Rolmatriz':"",
-               'Informacion Tesoreria':"total",
-               'Monto':str(total)
-                
-                 })
-    print(tabla)
-    nom="Out Hojas Scraping/"+carpeta+".txt"     
-    f = open(nom, "a")
-    f.write(tabla)
-    f.close() 
-
-
-      
-
-
-
-
-
-
-
-def test():
-
-    h="94"
-    carpeta="94-76182178-4-Inversiones World Logistic"
-    REGION="REGION METROPOLITANA DE SANTIAGO"
-    COMUNA="SAN BERNARDO"
-    ROLMATRIZ="4505-54"
-    RUT="76182178-4"
-    INMOBILIARIA="Inversiones World Logistic"
-    rol1="4505"
-    rol2="54"
-    return h,carpeta,REGION,COMUNA,ROLMATRIZ,RUT,INMOBILIARIA,rol1,rol2
 
 

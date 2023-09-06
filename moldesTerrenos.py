@@ -1,3 +1,4 @@
+import models
 from RPA.Browser.Selenium import Selenium;
 from RPA.Excel.Application import Application
 from RPA.Windows import Windows
@@ -9,8 +10,18 @@ import os
 import shutil
 from datetime import date
 from datetime import datetime
+from shutil import rmtree
+import openpyxl
 lib = Files()
 fecha_actual = datetime.now()
+import logging
+
+
+Dt=models.master()
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+                    filename= 'log procesos' )
 
 def masterlibros():
     lib.open_workbook('Data\Base de Existencias Unidades.xlsx')       
@@ -145,7 +156,7 @@ def logscraping(carpeta,Rolmatriz):
          VALOR_CUOTA=x[8:15]
          NRO_FOLIO=x[16:25]
          VENCIMIENTO=x[26:36]
-         TOTAL_A_PAGAR=x[37:48]
+         TOTAL_A_PAGAR=str(x[37:48]).replace(".","")
          EMAIL=x[48:55]
 
         
@@ -168,7 +179,7 @@ def logscraping(carpeta,Rolmatriz):
     lib.save_workbook('Excel/'+carpeta+".xlsx")
     lib.close_workbook()
 
-def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
+def salidaout(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
 
     """los datos necesarios son :
     carpeta: str
@@ -189,7 +200,7 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
     tabla=([{ }])
     
     for x in outlista:
-
+     totalapagar = x[4].replace(".", "").replace(",", "")
      if str(x[1])=="None":
         total=0
 
@@ -204,11 +215,11 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
                'Comuna':Comuna,
                'Rolmatriz':Rolmatriz,
                'Informacion Tesoreria':str(x[0]),
-               'Monto':str(x[4])
+               'Monto':totalapagar
                 
                  })
          
-            total=total+int(x[4])
+            total=total+totalapagar
             print(total)
 
         except:
@@ -223,7 +234,7 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
                'Comuna':"",
                'Rolmatriz':"",
                'Informacion Tesoreria':"total",
-               'Monto':str(total)
+               'Monto':totalapagar
                 
                  })
         
@@ -240,10 +251,7 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
                 lib.read_worksheet("Out Hojas Scraping/"+carpeta+".xlsx")
                 DtableFinal=lib.read_worksheet_as_table(name=inmobiliaria,header=True, start=1).data
                 lib.append_rows_to_worksheet(tabla, header=True)
-                
-                
-                lib.copy_cell_values()
-                print("prueba")
+
 
     except:
             print("el libro no existe")
@@ -264,22 +272,178 @@ def salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
 
     tabla=([{ }]) 
 
+def total(carpeta):
+    contenido = carpeta +".txt"
+
+    f=open('Log Scraping/'+ contenido,"r")
+    for wq in f:
+        if str(wq[1:4]) != "    ":
+            w = open("Log Scraping/total.txt", "a")
+            w.write(wq.replace("Enviar",carpeta))
+      
+def lectura(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna):
+  contenido= carpeta
+  ubicacion=contenido.replace(".txt","")
+  total(carpeta=ubicacion)
+  f=open('Log Scraping/total.txt',"r")
+  CapturaSCRAPIADO= ([{ }])
+  for x in f:
+         RUT=rut
+         INMOBILIARIA=inmobiliaria
+         Region=Región
+         Comuna=Comuna
+         Rol_Matriz=Rolmatriz
+         Informacion_Tesoreria=x[0:7]
+         monto=str(x[37:48]).replace(".","")
+         
+
+        
+         if str(x[48:55]) in " ":
+            print("------------------------")
+         else: 
+             CapturaSCRAPIADO.append({
+               'RUT':rut,
+               'INMOBILIARIA':inmobiliaria, 
+                'Región':Region,
+               'Comuna':Comuna,
+               'Rol_Matriz':Rolmatriz,
+               'Informacion_Tesoreria':Informacion_Tesoreria,
+               'monto':int(monto),
+                 })
+  
+  return CapturaSCRAPIADO
+ 
+def creacionExcelResumen():
+     lib.create_workbook()
+     for i in range(120):  
+        lib.create_worksheet(str(i))
+     for X in range(120):
+        lib.set_cell_format(2+X,"G",fmt=0.00)  
+     lib.save_workbook("Log Scraping\Resumen.xlsx")
+
+def datosexceltotal(h,tabla):
+
+    lib.open_workbook('Log Scraping\Resumen.xlsx')        #ubicacion del libro
+    lib.read_worksheet(str(h))  
+
+    lib.read_worksheet(str(h))       #activamos las cabezeras
+    listaTotales=lib.read_worksheet_as_table(name=str(h),header=True, start=1).data
+
+    lib.append_rows_to_worksheet(tabla,True)      
+    lib.save_workbook()
+    lib.close_workbook()
+    
+def subtotal(h):
+    
+    lib.open_workbook('Log Scraping\Resumen.xlsx')        #ubicacion del libro
+    lib.read_worksheet(str(h))      #nombre de la hoja
+    lib.read_worksheet(str(h))       #activamos las cabezeras
+    listaTotales=lib.read_worksheet_as_table(name=str(h),header=True, start=1).data
 
 
-carpeta="94-76182178-4-Inversiones World Logistic"
-Rolmatriz="4505- 54"
+    a=1
+    subtotal=0
+    while a<100:
+        lib.set_cell_format(1+a,"G",fmt=0.00)
+        Monto=lib.get_cell_value(1+a,"G")
+        
+#cuando encontramos los valores fina        
+        if a == 10 or a == 20 or a == 30 or a == 40 or a == 50 or a == 60 or a == 70 or a == 80 or a == 90 or a == 100:
+           lib.insert_rows_before(row=3+a)
+
+           try:     
+            subtotal = Monto + subtotal
+           except:
+               pass
+
+           lib.set_cell_value(3+a,"G",subtotal,fmt=0.00)
+          
+           lib.set_cell_value(3+a,"F","total")
+           subtotal=0
+           Monto=0
+           a=2+a
+           lib.save_workbook()
+        else:
+           a=1+a 
+
+           try:     
+            subtotal = Monto + subtotal
+           except:
+
+            pass  
+            
+           lib.save_workbook()
+           #Cuando no encontramos valores
+        if Monto is None:
+               lib.insert_rows_before(row=1+a)
+               lib.set_cell_value(2+a,"E","total")
+               try:     
+                    subtotal = Monto + Monto
+               except:
+                    pass
+               
+               lib.set_cell_value(2+a,"G",subtotal,fmt=0.00)         
+              
+               subtotal=0
+               a=1+a
+               lib.save_workbook()
+               
+               break
+        
+      
+
+   
+    print("termino ")
+    lib.close_workbook()
+
+def copiamosformatos(h):  
+    tabla=([{ }])
+    lib.open_workbook('Log Scraping\Resumen.xlsx')        #ubicacion del libro
+    lib.read_worksheet(h)      #nombre de la hoja
+    lib.read_worksheet(h)      #activamos las cabezeras
+    listaTotales=lib.read_worksheet_as_table(name=h,header=True, start=1).data
+  
+    return listaTotales
+
+def reporteHojas(h,tabla):
+    lib.open_workbook("Data\Resumen_Contribuciones_Terreno_2023.xlsx")      
+    lib.read_worksheet(str(h)) 
+    lib.clear_cell_range("B7:Z1000")
+    celda=0
+    for  x in tabla:
+            celda=1+celda
+            if x[5]=="total":
+                lib.set_cell_value(celda+6,"G",x[5])
+                lib.set_cell_value(celda+6,"H",x[6])
+            else:
+                lib.set_cell_value(celda+6,"B",x[0])
+                lib.set_cell_value(celda+6,"C",x[1])
+                lib.set_cell_value(celda+6,"D",x[2])
+                lib.set_cell_value(celda+6,"E",x[3])
+                lib.set_cell_value(celda+6,"F",x[4])
+                lib.set_cell_value(celda+6,"G",x[5])
+                lib.set_cell_value(celda+6,"H",x[6])
+
+    
+    lib.save_workbook ()                                             
+    lib.close_workbook()
+    print("proceso terminado")
+
+carpeta="49-76182178-4-Inversiones World Logistic"
+Rolmatriz="Rolmatriz"
 rut="76182178-4"
-inmobiliaria="Inversiones World Logistic"
-Región="REGION METROPOLITANA DE SANTIAGO "
-Comuna="SAN BERNARDO"
+inmobiliaria="76182178-4"
+Región="Región"
+Comuna="Comuna"
+h="49"
 
+"""
+tabla=lectura(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna)
 
-#logscraping(carpeta)
-#salida(carpeta,Rolmatriz,rut,inmobiliaria,Región,Comuna)
-
-
-
-
-
-
-
+datosexceltotal(h,tabla)
+subtotal(h)
+tabla=copiamosformatos(h)
+print(tabla)
+subtotal(h)
+reporteHojas(h,tabla)
+"""
