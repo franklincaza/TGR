@@ -52,7 +52,10 @@ def Pyasset(asset):
 
 def openweb(u):
 
+    browser.open_available_browser(u,browser_selection="firefox",use_profile=True)
+
     browser.open_available_browser(u,browser_selection="firefox")
+
    
    
     #browser.open_available_browser(url=u,browser_selection="Chrome",use_profile=True,profile_name="franklin ramirez", profile_path=tpath)
@@ -340,9 +343,6 @@ def savepdf(carpeta,consecutivo,cuota,rol):
    
 def txtscraping(carpeta):
   f=open('Log Scraping/'+carpeta+".txt","r")
-    
-
-    
 
   scrp=[]
   for x in f:

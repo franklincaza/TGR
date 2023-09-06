@@ -1,4 +1,5 @@
 import defRPAselenium
+import moldesTerrenos
 import models
 import moldesTerrenos
 from RPA.Browser.Selenium import Selenium;
@@ -13,13 +14,25 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     filename= 'log procesos' )
 
+
+
+
 browser = Selenium()
-Dt=models.master()
-
-
-urlbase=defRPAselenium.Pyasset(asset="base")
+Dt=moldesTerrenos.masterlibros()
+urlbase=str(defRPAselenium.Pyasset(asset="base"))
 UrlMacro=defRPAselenium.Pyasset(asset="Ruta ")
 libro=defRPAselenium.Pyasset(asset="LIBRO ")
+
+
+
+
+#moldesTerrenos.task_Modelos()
+#moldesTerrenos.Asignaconsultafecha()
+
+
+
+
+
 
 def eliminarcarpetas():
     try:
@@ -42,6 +55,7 @@ def Creacionescarpetas():
     try:
         os.mkdir('PDF')
         os.mkdir('CSV')
+        os.mkdir('Excel')
         os.mkdir("Formato Solicitud")  
         os.mkdir("Log Scraping")
         os.mkdir("Salida") 
@@ -149,13 +163,12 @@ def tgc():
     
          
 if __name__ == "__main__":
-   eliminarcarpetas()
-   Creacionescarpetas()
-   defRPAselenium.bakup()
+   
+  # eliminarcarpetas()
+  # Creacionescarpetas()
+  #defRPAselenium.bakup()
    tgc()
-   models.txttocsv()
-   defRPAselenium.salida()
-   print('Ejecucion finalizada')
+   logging.info('Ejecucion finalizada')
    
  
  
