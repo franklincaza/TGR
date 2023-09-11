@@ -60,21 +60,15 @@ def Pyasset(asset):
 
 def openweb(u):
 
-    browser.open_available_browser(u,browser_selection="firefox",use_profile=True)
-
-    browser.open_available_browser(u,browser_selection="firefox")
-
-   
-   
-    #browser.open_available_browser(url=u,browser_selection="Chrome",use_profile=True,profile_name="franklin ramirez", profile_path=tpath)
-    #browser.open_available_browser(url=u)
+    browser.open_available_browser(u)
+    
     browser.maximize_browser_window() 
-
     validacion= browser.get_text("//DIV[@class='dentro_letra'][text()='Contribuciones']")
     if validacion == 'Contribuciones': print("ingresando a "+validacion) 
     state_tgc_Inicio=True
  
     time.sleep(random.uniform(5,7))
+ 
 
 def clickweb(elemento):
     time.sleep(random.uniform(1,2))
@@ -128,6 +122,7 @@ def recorrerFilasDescargas(carpeta,scraping,rol,hoja):
    
     row=0
     tabledata=txtscraping(carpeta)
+  
     for celda in tabledata:
         row=row+1  
         consecutivo=str(row)     
@@ -152,12 +147,15 @@ def recorrerFilasDescargas(carpeta,scraping,rol,hoja):
                     except:
                          pass
                     
+                    
                     savepdf(carpeta,str(consecutivo ),CUOTA,str(rol))
                     row=row+1 
+                   
         except:
              pass
         finally:
             pass
+            
 
 def recorriendoFormatoSolicitud(carpeta,hoja):
     row=0
@@ -215,10 +213,7 @@ def validacion():
        
 def navegacion(region,comuna,rol1,rol2,ruta,hoja):
     def interacion():
-        try:
-          browser.close_browser()
-        except:
-          pass
+        cerrarinicio()
         openweb("https://www.tesoreria.cl/ContribucionesPorRolWEB/muestraBusqueda?tipoPago=PortalContribPresencial")                             
         clickweb("//SELECT[@id='region']/self::SELECT")
         clickweb("//option[text()='"+region+"']")
@@ -252,9 +247,9 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
 
         except:# proceso de consulta reintento #1
             tabla ="""Recatcha no me permitio hacer la consulta"""
-            cerraNavegador()
             if """Recatcha no me permitio hacer la consulta"""==tabla:
                 print("Reintamos hacer la consulta")
+                
                 
                 
                 try: # Validando si la tabla funciona
@@ -266,6 +261,7 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                         print(tabla) 
                         destacar("//TABLE[@id='example']//tbody//tr//td") 
                     else:
+                         
                          pass    
                        
                         
@@ -292,10 +288,9 @@ def navegacion(region,comuna,rol1,rol2,ruta,hoja):
                         elif  tabla == 'No se encontraron Deudas':
                                 pass
 
-    finally:
-         
+    finally: 
          pass
-         cerraNavegador()                    
+                        
 
 def savepdf(carpeta,consecutivo,cuota,rol):
  base=Pyasset(asset="base")
@@ -331,6 +326,7 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         time.sleep(1)
         library.send_keys(keys="{Ctrl}W")
         
+        
         origen=txt+"\\"+salida+".pdf"
         destino=txt+"\\"+"Cupon de pago "+str(rol)+" "+str(cuota)+".pdf"
         library.send_keys(keys="{Enter}")
@@ -340,6 +336,7 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         cambionombre(origen, destino)         
  
     if str(consecutivo)!=str("1"):
+
         library.send_keys(keys="{Alt}N")
         time.sleep(2)
         library.send_keys(keys=str(salida))
@@ -349,7 +346,7 @@ def savepdf(carpeta,consecutivo,cuota,rol):
         library.click("name:imprimirAr")
         time.sleep(1)
         library.send_keys(keys="{Ctrl}W")
-        
+        pdfsaturado(carpeta,consecutivo,cuota,rol)
         origen=txt+"\\"+salida+".pdf"
         destino=txt+"\\"+"Cupon de pago "+str(rol)+" "+str(cuota)+".pdf"
 
@@ -512,8 +509,7 @@ def formatosolicitusd(h,carpeta):
     
       
     for txt in dtcon:
-            CUOTA = txt.get('CUOTA') 
-                       
+            CUOTA = txt.get('CUOTA')                       
             VALOR=  txt.get('VALOR')
             if str(CUOTA)[2:]==consulta : 
                 cu = CUOTA             
@@ -539,7 +535,7 @@ def formatosolicitusd(h,carpeta):
                         lib.set_cell_value(10,"D","Enrique Carrasco")
                         lib.set_cell_value(12,"D",str(x[3]))
                         lib.set_cell_value(12,"H",str(x[2]))  
-                        lib.set_cell_value(14,"C",int(total), fmt="0.00")
+                        lib.set_cell_value(14,"C",VALOR, fmt="0.00")
                         lib.set_cell_value(20,"C","Teatinos 28, Santiago")
                         lib.set_cell_value(22,"D","pago contribucciones "+str(CUOTA))
                         lib.set_cell_value(24,"D","pago contribucciones "+str(CUOTA))
@@ -548,6 +544,10 @@ def formatosolicitusd(h,carpeta):
                         lib.set_cell_value(30,"D",str("Contribucciones"))
                         lib.save_workbook(destino)
                         lib.close_workbook()
+
+
+
+
                         
 def diligenciarhojas(h,carpeta,REGION,COMUNA,ROLMATRIZ,RUT,INMOBILIARIA,rol1,rol2):
     dtcon=txtscraping(carpeta)
@@ -822,4 +822,38 @@ def salida():
      destino="Salida\Resumen_Contribuciones_Terreno_2023.xlsx"
      shutil.copy(origen,destino )
 
+def cerrarinicio():
+     try:
+          browser.close_browser()
+     except:
+      pass
 
+def pdfsaturado(carpeta,consecutivo,cuota,rol):
+    try:
+        
+        
+        library.click("name:No")
+        time.sleep(2)
+        library.send_keys(keys="{Alt}N")
+        time.sleep(2)
+        library.send_keys(keys=carpeta+" "+cuota+" "+rol+consecutivo+1)
+        time.sleep(3)
+        library.send_keys(keys="{Enter}")
+        time.sleep(1)
+        library.send_keys(keys="{Enter}")
+        consecutivo=consecutivo+1
+        browser.close_browser()
+        browser.close_all_browsers()
+        browser.close_window()
+        
+    except:
+         print("pdf no esta saturado")
+         browser.close_browser()
+         browser.close_all_browsers()
+         browser.close_window()
+         pass
+
+h=66
+carpeta="66-76754566-5-Inmobiliaria Monseñor Eyzaguirre II Spa"
+
+formatosolicitusd(h,carpeta)

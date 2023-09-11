@@ -58,6 +58,7 @@ def Creacionescarpetas():
         pass
 
 def task():
+
      
             for dtable in Dt:
                 if dtable[5] == "SI":
@@ -75,7 +76,7 @@ def task():
                     rol1=dtable[8]                               
                     rol2=dtable[9]
                     Codigo=dtable[10]
-    
+                    
 
                     
                     logging.info("creacion de hoja Resumen")
@@ -93,13 +94,16 @@ def task():
                         logging.info(estadoConsulta)
 
                         try:
+                            defRPAselenium.cerrarinicio()
                             tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
                             stado=False
                             consulta=False 
  
                         except:                      
                         #Tercer reintento para garantizar continuidad si encuentra Recatchat
+                         
                             try: 
+                                defRPAselenium.cerrarinicio()
                                 logging.warning("segundo reintento ") 
                                 time.sleep(3)
                                 tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
@@ -109,7 +113,9 @@ def task():
                             except:
                                 
                                 logging.warning("tercer reintento ") 
+                            
                                 try:
+                                    defRPAselenium.cerrarinicio()
                                     time.sleep(3)
                                     tabla = defRPAselenium.navegacion(region,comuna,rol1,rol2,Carpeta,Hoja)
                                     stado=False
@@ -117,18 +123,21 @@ def task():
                                     pass
                                 except:
                                     pass
-                            
                             finally:
                                 pass   
-                                defRPAselenium.cerraNavegador() 
+                                defRPAselenium.cerraNavegador()
+                                defRPAselenium.cerrarinicio() 
 
                                 
                     if consulta==stado :
                        consulta=False 
                        
-
-                    try:
+                    logging.info("----------------Diligenciando Formato de solicitud--------------------------- ")
+                    try:defRPAselenium.formatosolicitusd(Hoja,Carpeta)
+                    except:logging.error("Fallo la funcio formatosolicitusd().")
+                    """try:
                         try:
+                            defRPAselenium.cerrarinicio()
                             logging.info("----------------Diligenciando resumen--------------------------------------- ")
                             defRPAselenium.diligenciarResumen(Hoja,Carpeta)
                             stado=False
@@ -165,21 +174,17 @@ def task():
                         except:
                                 logging.error("Fallo la funcio logscraping()  .")
                         
-                        try:tabla=moldesTerrenos.lectura(Carpeta,rolmatriz,Rut,Inmobiliaria,region,comuna)
-                        except:logging.error("Fallo la funcio lectura().")
                             
-                        try: moldesTerrenos.datosexceltotal(Hoja,tabla)
-                        except:logging.error("Fallo la funcio datosexceltotal().")
-                        try:moldesTerrenos.subtotal(Hoja)
-                        except:logging.error("Fallo la funcio subtotal().")
-                        try:moldesTerrenos.reporteHojas(Hoja,tabla,region)
-                        except:logging.error("Fallo la funcio reporteHojas().")
+                        try: moldesTerrenos.lecturaALL(Carpeta,Rut,region,comuna,rolmatriz,Inmobiliaria,Hoja)
+                        except:logging.error("Fallo la funcio lecturaALL().")
+                       
 
                     except:
-                            pass
+                            pass"""
                 
 def tgc():
    task()  
+
                  
 if __name__ == "__main__":
    
@@ -188,6 +193,7 @@ if __name__ == "__main__":
    moldesTerrenos.creacionExcelResumen()
    defRPAselenium.bakup()
    tgc()
+   moldesTerrenos.sumatorias()
    logging.info('Ejecucion finalizada')
    tiempoFinal=time.time() 
    TiempoTotal=tiempoFinal-tiempoInicio
