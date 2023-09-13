@@ -440,7 +440,7 @@ def lecturaALL(carpeta,rut,Región,Comuna,Rolmatriz,inmobiliaria,h):
  lib.clear_cell_range("B7:Z1000")
  try:#capturando datos txt
   f=open('Log Scraping/'+carpeta+'.txt',"r")
-  
+  filtro=filtroCuota(carpeta)
   CapturaSCRAPIADO= ([{ }])
   for x in f:
         linea=x.replace("Enviar","")
